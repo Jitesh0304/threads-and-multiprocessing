@@ -62,6 +62,7 @@ def worker(task_id, tasks):
     tasks[task_id] = 'completed'
     print(f"Task-{task_id} completed")
 
+
 if __name__ == "__main__":
     with Manager() as manager:
         tasks = manager.dict()
