@@ -91,6 +91,6 @@ for j in range(5):
     t.start()
 
 for thread in threads:
-    thread.join()
+    thread.join()       # Wait until all running tasks finish naturally, wait for workers to exit
 
 print("Final counter:", counter)

@@ -35,3 +35,40 @@ def setter():
 t1 = threading.Thread(target=waiter)
 t2 = threading.Thread(target=setter)
 t1.start(); t2.start()
+
+
+###################################################################################
+
+
+from multiprocessing import Process, Event
+import time
+
+
+# set(), wait(), clear(), is_set().
+def waiter(e, name):
+    print(f"{name} waiting for event...")
+    e.wait()   # blocks until event.set() is called
+    print(f"{name} got the event!")
+
+
+def setter(e):
+    print("Setter sleeping...")
+    time.sleep(3)
+    print("Setter setting event")
+    e.set()
+
+
+if __name__ == "__main__":
+    event = Event()
+
+    p1 = Process(target=waiter, args=(event, "Process-1"))
+    p2 = Process(target=waiter, args=(event, "Process-2"))
+    p3 = Process(target=setter, args=(event, "Process-3"))
+
+    p1.start()
+    p2.start()
+    p3.start()
+
+    p1.join()
+    p2.join()
+    p3.join()

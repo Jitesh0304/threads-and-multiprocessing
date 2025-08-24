@@ -28,6 +28,7 @@ start()
 join()
     1)  Wait for it to complete before moving on.
     2)  Purpose: Makes the main program wait until the thread or process finishes.
+    3)  Wait until all running tasks finish naturally, wait for workers to exit
 
 Risks of skipping join()
     1)  If the main program exits, threads/processes that are not daemon will still try to finish — this can delay exit.
